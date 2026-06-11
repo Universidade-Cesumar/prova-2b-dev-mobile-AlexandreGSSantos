@@ -28,6 +28,10 @@ export default function App() {
   }
 }
 
+useEffect(() => {
+  carregarMateriais();
+}, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Almoxarifado - Enfermagem</Text>
