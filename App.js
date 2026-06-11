@@ -41,8 +41,23 @@ useEffect(() => {
         Este template servirá para desenvolver o projeto responsável por modernizar o controle de insumos médicos do almoxarifado.
         Através desta interface conectada à API, é possível realizar o inventário em tempo real, cadastrar novos materiais e registrar baixas de estoque de forma ágil e segura.
       </Text>
+    
+      <TextInput
+        testID="input-nome"
+        style={styles.input}
+        placeholder="Nome do material"
+        value={nome}
+        onChangeText={setNome}
+      />
 
-      {/* Os alunos vão construir os componentes visuais das Sprints aqui dentro */}
+      <TextInput
+        testID="input-quantidade"
+        style={styles.input}
+        placeholder="Quantidade"
+        value={quantidade}
+        onChangeText={setQuantidade}
+        keyboardType="numeric"
+      />
 
     </View>
   );
@@ -68,5 +83,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: 30,
-  }
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 12,
+  },
 });
