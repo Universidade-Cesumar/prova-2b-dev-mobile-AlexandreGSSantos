@@ -13,6 +13,21 @@ export default function App() {
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
 
+  async function carregarMateriais() {
+  setLoading(true);
+
+  try {
+    const resposta = await fetch(API_URL);
+    const dados = await resposta.json();
+
+    setMaterials(dados);
+  } catch (error) {
+    console.log('Erro ao carregar materiais:', error);
+  } finally {
+    setLoading(false);
+  }
+}
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Almoxarifado - Enfermagem</Text>
