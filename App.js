@@ -76,6 +76,7 @@ export default function App() {
       <TouchableOpacity
         testID="btn-cadastrar"
         style={styles.button}
+        onPress={cadastrarMaterial}
       >
         <Text style={styles.buttonText}>Cadastrar Material</Text>
       </TouchableOpacity>
