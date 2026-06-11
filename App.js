@@ -38,6 +38,9 @@ export default function App() {
         },
         body: JSON.stringify(novoMaterial),
       });
+
+      setNome('');
+      setQuantidade('');
       
       carregarMateriais();
 
