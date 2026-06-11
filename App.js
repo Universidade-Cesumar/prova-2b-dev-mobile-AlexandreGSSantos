@@ -38,6 +38,9 @@ export default function App() {
         },
         body: JSON.stringify(novoMaterial),
       });
+      
+      carregarMateriais();
+
     } catch (error) {
       console.log('Erro ao cadastrar material:', error);
     }
