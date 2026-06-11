@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 
 export default function App() {
-  // --- Estados da Aplicação (Os alunos implementarão aqui) ---
-
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [materials, setMaterials] = useState([]);
@@ -11,37 +9,34 @@ export default function App() {
 
   const API_URL = "https://6a2b3ed1b687a7d5cbc50251.mockapi.io/api/v1/materials";
 
-  // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
-
   async function carregarMateriais() {
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const resposta = await fetch(API_URL);
-    const dados = await resposta.json();
+    try {
+      const resposta = await fetch(API_URL);
+      const dados = await resposta.json();
 
-    setMaterials(dados);
-  } catch (error) {
-    console.log('Erro ao carregar materiais:', error);
-  } finally {
-    setLoading(false);
+      setMaterials(dados);
+    } catch (error) {
+      console.log('Erro ao carregar materiais:', error);
+    } finally {
+      setLoading(false);
+    }
   }
-}
 
-useEffect(() => {
-  carregarMateriais();
-}, []);
+  useEffect(() => {
+    carregarMateriais();
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Almoxarifado - Enfermagem</Text>
 
-      {/* Breve descrição do projeto inserida abaixo */}
       <Text style={styles.description}>
         Este template servirá para desenvolver o projeto responsável por modernizar o controle de insumos médicos do almoxarifado.
         Através desta interface conectada à API, é possível realizar o inventário em tempo real, cadastrar novos materiais e registrar baixas de estoque de forma ágil e segura.
       </Text>
-    
+
       <TextInput
         testID="input-nome"
         style={styles.input}
@@ -66,6 +61,23 @@ useEffect(() => {
         <Text style={styles.buttonText}>Cadastrar Material</Text>
       </TouchableOpacity>
 
+      <Text style={styles.subtitle}>Materiais cadastrados</Text>
+
+      {loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FlatList
+          testID="lista-materials"
+          data={materials}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Text style={styles.materialName}>{item.nome}</Text>
+              <Text>Quantidade: {item.quantidade}</Text>
+            </View>
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -105,9 +117,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-
   buttonText: {
     color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  card: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 10,
+  },
+  materialName: {
     fontSize: 16,
     fontWeight: 'bold',
   },
