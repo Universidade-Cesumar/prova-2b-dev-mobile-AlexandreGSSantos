@@ -59,6 +59,13 @@ useEffect(() => {
         keyboardType="numeric"
       />
 
+      <TouchableOpacity
+        testID="btn-cadastrar"
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Cadastrar Material</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -90,5 +97,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     marginBottom: 12,
+  },
+  button: {
+    backgroundColor: '#1976D2',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
