@@ -24,6 +24,25 @@ export default function App() {
     }
   }
 
+  async function cadastrarMaterial() {
+    const novoMaterial = {
+      nome: nome,
+      quantidade: Number(quantidade),
+    };
+
+    try {
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novoMaterial),
+      });
+    } catch (error) {
+      console.log('Erro ao cadastrar material:', error);
+    }
+  }
+
   useEffect(() => {
     carregarMateriais();
   }, []);
