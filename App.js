@@ -94,7 +94,7 @@ export default function App() {
       <Text style={styles.subtitle}>Materiais cadastrados</Text>
 
       {loading ? (
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#1976D2" />
       ) : (
         <FlatList
           testID="lista-materials"
