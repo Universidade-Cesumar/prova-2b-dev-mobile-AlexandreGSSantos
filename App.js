@@ -163,9 +163,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 10,
+    backgroundColor: '#f5f5f5',
   },
   materialName: {
     fontSize: 16,
     fontWeight: 'bold',
+    marginBottom: 4,
   },
 });
