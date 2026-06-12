@@ -25,6 +25,10 @@ export default function App() {
   }
 
   async function cadastrarMaterial() {
+    if (!nome || !quantidade) {
+      return;
+    }
+    
     const novoMaterial = {
       nome: nome,
       quantidade: Number(quantidade),
