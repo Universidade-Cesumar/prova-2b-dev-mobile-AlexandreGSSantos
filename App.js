@@ -132,6 +132,10 @@ export default function App() {
                 }
                 keyboardType="numeric"
               />
+
+              <TouchableOpacity testID="btn-baixar" style={styles.button}>
+                <Text style={styles.buttonText}>Baixar Estoque</Text>
+              </TouchableOpacity>
             </View>
           )}
         />
