@@ -40,6 +40,17 @@ export default function App() {
       return;
     }
 
+    async function baixarMaterial(material) {
+      const quantidadeRetirada = Number(retiradas[material.id]);
+
+      if (!validarRetirada(material.quantidade, quantidadeRetirada)) {
+        console.log("Retirada inválida");
+        return;
+      }
+
+      console.log("Retirada válida");
+    }
+
     const novoMaterial = {
       nome: nome,
       quantidade: Number(quantidade),
