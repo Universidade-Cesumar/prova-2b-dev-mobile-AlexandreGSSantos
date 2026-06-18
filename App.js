@@ -116,7 +116,22 @@ export default function App() {
           renderItem={({ item }) => (
             <View style={styles.card}>
               <Text style={styles.materialName}>{item.nome}</Text>
+
               <Text>Quantidade: {item.quantidade}</Text>
+
+              <TextInput
+                testID="input-retirada"
+                style={styles.input}
+                placeholder="Quantidade para retirar"
+                value={retiradas[item.id] || ""}
+                onChangeText={(texto) =>
+                  setRetiradas({
+                    ...retiradas,
+                    [item.id]: texto,
+                  })
+                }
+                keyboardType="numeric"
+              />
             </View>
           )}
         />
