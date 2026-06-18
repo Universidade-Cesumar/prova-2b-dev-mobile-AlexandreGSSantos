@@ -144,7 +144,11 @@ export default function App() {
                 keyboardType="numeric"
               />
 
-              <TouchableOpacity testID="btn-baixar" style={styles.button}>
+              <TouchableOpacity
+                testID="btn-baixar"
+                style={styles.button}
+                onPress={() => baixarMaterial(item)}
+              >
                 <Text style={styles.buttonText}>Baixar Estoque</Text>
               </TouchableOpacity>
             </View>
