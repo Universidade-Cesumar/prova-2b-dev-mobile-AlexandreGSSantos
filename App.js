@@ -244,6 +244,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
+  buttonBaixar: {
+    backgroundColor: "#1976D2",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+
+  buttonExcluir: {
+    backgroundColor: "#D32F2F",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 20,
+  },
   buttonText: {
     color: "#fff",
     fontSize: 16,
