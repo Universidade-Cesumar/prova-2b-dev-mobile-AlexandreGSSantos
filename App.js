@@ -51,7 +51,22 @@ export default function App() {
 
       const novaQuantidade = estoqueAtual - quantidadeRetirada;
 
-      console.log("Novo estoque:", novaQuantidade);
+      try {
+        await fetch(`${API_URL}/${material.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...material,
+            quantidade: novaQuantidade,
+          }),
+        });
+
+        carregarMateriais();
+      } catch (error) {
+        console.log("Erro ao baixar estoque:", error);
+      }
     }
 
     const novoMaterial = {
