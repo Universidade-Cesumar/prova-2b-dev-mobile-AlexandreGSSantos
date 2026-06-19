@@ -40,35 +40,6 @@ export default function App() {
       return;
     }
 
-    async function baixarMaterial(material) {
-      const quantidadeRetirada = Number(retiradas[material.id]);
-      const estoqueAtual = Number(material.quantidade);
-
-      if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
-        console.log("Retirada inválida");
-        return;
-      }
-
-      const novaQuantidade = estoqueAtual - quantidadeRetirada;
-
-      try {
-        await fetch(`${API_URL}/${material.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...material,
-            quantidade: novaQuantidade,
-          }),
-        });
-
-        carregarMateriais();
-      } catch (error) {
-        console.log("Erro ao baixar estoque:", error);
-      }
-    }
-
     const novoMaterial = {
       nome: nome,
       quantidade: Number(quantidade),
@@ -89,6 +60,35 @@ export default function App() {
       carregarMateriais();
     } catch (error) {
       console.log("Erro ao cadastrar material:", error);
+    }
+  }
+
+  async function baixarMaterial(material) {
+    const quantidadeRetirada = Number(retiradas[material.id]);
+    const estoqueAtual = Number(material.quantidade);
+
+    if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
+      console.log("Retirada inválida");
+      return;
+    }
+
+    const novaQuantidade = estoqueAtual - quantidadeRetirada;
+
+    try {
+      await fetch(`${API_URL}/${material.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...material,
+          quantidade: novaQuantidade,
+        }),
+      });
+
+      carregarMateriais();
+    } catch (error) {
+      console.log("Erro ao baixar estoque:", error);
     }
   }
 
