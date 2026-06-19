@@ -104,6 +104,11 @@ export default function App() {
       });
 
       carregarMateriais();
+
+      setRetiradas({
+        ...retiradas,
+        [id]: "",
+      });
     } catch (error) {
       console.log("Erro ao excluir material:", error);
     }
