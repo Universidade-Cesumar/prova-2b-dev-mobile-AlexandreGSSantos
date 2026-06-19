@@ -68,7 +68,9 @@ export default function App() {
     const estoqueAtual = Number(material.quantidade);
 
     if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
-      console.log("Retirada inválida");
+      console.log(
+        "Operação cancelada: quantidade inválida ou superior ao estoque disponível.",
+      );
       return;
     }
 
