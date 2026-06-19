@@ -42,13 +42,16 @@ export default function App() {
 
     async function baixarMaterial(material) {
       const quantidadeRetirada = Number(retiradas[material.id]);
+      const estoqueAtual = Number(material.quantidade);
 
-      if (!validarRetirada(material.quantidade, quantidadeRetirada)) {
+      if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
         console.log("Retirada inválida");
         return;
       }
 
-      console.log("Retirada válida");
+      const novaQuantidade = estoqueAtual - quantidadeRetirada;
+
+      console.log("Novo estoque:", novaQuantidade);
     }
 
     const novoMaterial = {
