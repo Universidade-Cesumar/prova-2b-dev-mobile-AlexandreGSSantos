@@ -87,6 +87,11 @@ export default function App() {
       });
 
       carregarMateriais();
+
+      setRetiradas({
+        ...retiradas,
+        [material.id]: "",
+      });
     } catch (error) {
       console.log("Erro ao baixar estoque:", error);
     }
