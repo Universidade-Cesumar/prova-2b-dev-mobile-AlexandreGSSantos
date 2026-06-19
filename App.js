@@ -92,6 +92,18 @@ export default function App() {
     }
   }
 
+  async function excluirMaterial(id) {
+    try {
+      await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+      });
+
+      carregarMateriais();
+    } catch (error) {
+      console.log("Erro ao excluir material:", error);
+    }
+  }
+
   useEffect(() => {
     carregarMateriais();
   }, []);
