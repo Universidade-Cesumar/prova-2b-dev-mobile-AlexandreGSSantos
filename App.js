@@ -181,6 +181,14 @@ export default function App() {
               >
                 <Text style={styles.buttonText}>Baixar Estoque</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                testID="btn-excluir"
+                style={styles.button}
+                onPress={() => excluirMaterial(item.id)}
+              >
+                <Text style={styles.buttonText}>Excluir Material</Text>
+              </TouchableOpacity>
             </View>
           )}
         />
