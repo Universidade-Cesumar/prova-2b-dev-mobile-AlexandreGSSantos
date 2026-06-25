@@ -193,9 +193,11 @@ export default function App() {
 
       <Text style={styles.subtitle}>Materiais cadastrados</Text>
 
-      <Text testID="total-itens" style={styles.description}>
-        Total de materiais: {materiaisFiltrados.length}
-      </Text>
+      <View style={styles.dashboard}>
+        <Text testID="total-itens" style={styles.subtitle}>
+          Total de materiais: {materiaisFiltrados.length}
+        </Text>
+      </View>
 
       {loading ? (
         <ActivityIndicator size="large" color="#1976D2" />
@@ -332,5 +334,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 4,
+  },
+  dashboard: {
+    backgroundColor: "#E3F2FD",
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 15,
   },
 });
