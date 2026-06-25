@@ -67,6 +67,11 @@ export default function App() {
       carregarMateriais();
     } catch (error) {
       console.log("Erro ao cadastrar material:", error);
+
+      Alert.alert(
+        "Erro de conexão",
+        "Não foi possível cadastrar o material. Tente novamente.",
+      );
     }
   }
 
@@ -103,6 +108,11 @@ export default function App() {
       });
     } catch (error) {
       console.log("Erro ao baixar estoque:", error);
+
+      Alert.alert(
+        "Erro de conexão",
+        "Não foi possível baixar o estoque. Tente novamente.",
+      );
     }
   }
 
@@ -120,6 +130,11 @@ export default function App() {
       });
     } catch (error) {
       console.log("Erro ao excluir material:", error);
+
+      Alert.alert(
+        "Erro de conexão",
+        "Não foi possível excluir o material. Tente novamente.",
+      );
     }
   }
 
