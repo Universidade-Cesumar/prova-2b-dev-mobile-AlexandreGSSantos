@@ -188,7 +188,7 @@ export default function App() {
 
               <TouchableOpacity
                 testID="btn-baixar"
-                style={styles.button}
+                style={styles.buttonBaixar}
                 onPress={() => baixarMaterial(item)}
               >
                 <Text style={styles.buttonText}>Baixar Estoque</Text>
@@ -196,7 +196,7 @@ export default function App() {
 
               <TouchableOpacity
                 testID="btn-excluir"
-                style={styles.button}
+                style={styles.buttonExcluir}
                 onPress={() => excluirMaterial(item.id)}
               >
                 <Text style={styles.buttonText}>Excluir Material</Text>
