@@ -186,7 +186,12 @@ export default function App() {
           renderItem={({ item }) => {
             const estoqueCritico = Number(item.quantidade) < 10;
             return (
-              <View style={styles.card}>
+              <View
+                style={[styles.card, estoqueCritico && styles.cardCritico]}
+                accessibilityLabel={
+                  estoqueCritico ? "estoque-critico" : undefined
+                }
+              >
                 <Text style={styles.materialName}>{item.nome}</Text>
 
                 <Text>Quantidade: {item.quantidade}</Text>
@@ -296,6 +301,11 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 10,
     backgroundColor: "#f5f5f5",
+  },
+  cardCritico: {
+    backgroundColor: "#FFEBEE",
+    borderColor: "#D32F2F",
+    borderWidth: 2,
   },
   materialName: {
     fontSize: 16,
