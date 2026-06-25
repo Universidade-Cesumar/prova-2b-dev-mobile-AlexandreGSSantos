@@ -158,6 +158,14 @@ export default function App() {
         <Text style={styles.buttonText}>Cadastrar Material</Text>
       </TouchableOpacity>
 
+      <TextInput
+        testID="input-busca"
+        style={styles.input}
+        placeholder="Buscar material"
+        value={busca}
+        onChangeText={setBusca}
+      />
+
       <Text style={styles.subtitle}>Materiais cadastrados</Text>
 
       {loading ? (
