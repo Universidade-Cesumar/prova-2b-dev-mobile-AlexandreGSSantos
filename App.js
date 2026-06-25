@@ -177,7 +177,7 @@ export default function App() {
       ) : (
         <FlatList
           testID="lista-materials"
-          data={materials}
+          data={materiaisFiltrados}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.card}>
