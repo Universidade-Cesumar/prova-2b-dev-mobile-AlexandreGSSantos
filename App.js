@@ -117,6 +117,10 @@ export default function App() {
     }
   }
 
+  const materiaisFiltrados = materials.filter((material) =>
+    material.nome.toLowerCase().includes(busca.toLowerCase()),
+  );
+
   useEffect(() => {
     carregarMateriais();
   }, []);
