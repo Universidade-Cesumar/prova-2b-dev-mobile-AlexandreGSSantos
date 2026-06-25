@@ -183,43 +183,46 @@ export default function App() {
           testID="lista-materials"
           data={materiaisFiltrados}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Text style={styles.materialName}>{item.nome}</Text>
+          renderItem={({ item }) => {
+            const estoqueCritico = Number(item.quantidade) < 10;
+            return (
+              <View style={styles.card}>
+                <Text style={styles.materialName}>{item.nome}</Text>
 
-              <Text>Quantidade: {item.quantidade}</Text>
+                <Text>Quantidade: {item.quantidade}</Text>
 
-              <TextInput
-                testID="input-retirada"
-                style={styles.input}
-                placeholder="Quantidade para retirar"
-                value={retiradas[item.id] || ""}
-                onChangeText={(texto) =>
-                  setRetiradas({
-                    ...retiradas,
-                    [item.id]: texto,
-                  })
-                }
-                keyboardType="numeric"
-              />
+                <TextInput
+                  testID="input-retirada"
+                  style={styles.input}
+                  placeholder="Quantidade para retirar"
+                  value={retiradas[item.id] || ""}
+                  onChangeText={(texto) =>
+                    setRetiradas({
+                      ...retiradas,
+                      [item.id]: texto,
+                    })
+                  }
+                  keyboardType="numeric"
+                />
 
-              <TouchableOpacity
-                testID="btn-baixar"
-                style={styles.buttonBaixar}
-                onPress={() => baixarMaterial(item)}
-              >
-                <Text style={styles.buttonText}>Baixar Estoque</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  testID="btn-baixar"
+                  style={styles.buttonBaixar}
+                  onPress={() => baixarMaterial(item)}
+                >
+                  <Text style={styles.buttonText}>Baixar Estoque</Text>
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                testID="btn-excluir"
-                style={styles.buttonExcluir}
-                onPress={() => excluirMaterial(item.id)}
-              >
-                <Text style={styles.buttonText}>Excluir Material</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+                <TouchableOpacity
+                  testID="btn-excluir"
+                  style={styles.buttonExcluir}
+                  onPress={() => excluirMaterial(item.id)}
+                >
+                  <Text style={styles.buttonText}>Excluir Material</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
         />
       )}
     </View>
