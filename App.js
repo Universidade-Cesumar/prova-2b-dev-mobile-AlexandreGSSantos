@@ -172,6 +172,10 @@ export default function App() {
 
       <Text style={styles.subtitle}>Materiais cadastrados</Text>
 
+      <Text testID="total-itens" style={styles.description}>
+        Total de materiais: {materiaisFiltrados.length}
+      </Text>
+
       {loading ? (
         <ActivityIndicator size="large" color="#1976D2" />
       ) : (
