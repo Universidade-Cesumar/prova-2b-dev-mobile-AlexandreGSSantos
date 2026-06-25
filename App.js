@@ -16,6 +16,7 @@ export default function App() {
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(false);
   const [retiradas, setRetiradas] = useState({});
+  const [busca, setBusca] = useState("");
 
   const API_URL =
     "https://6a2b3ed1b687a7d5cbc50251.mockapi.io/api/v1/materials";
