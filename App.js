@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { validarRetirada } from "./src/utils/validacoes";
 
@@ -31,6 +32,11 @@ export default function App() {
       setMaterials(dados);
     } catch (error) {
       console.log("Erro ao carregar materiais:", error);
+
+      Alert.alert(
+        "Erro de conexão",
+        "Não foi possível carregar os materiais. Verifique sua conexão e tente novamente.",
+      );
     } finally {
       setLoading(false);
     }
