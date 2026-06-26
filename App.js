@@ -138,9 +138,13 @@ export default function App() {
     }
   }
 
-  const materiaisFiltrados = materials.filter((material) =>
-    material.nome.toLowerCase().includes(busca.toLowerCase()),
-  );
+  const textoBusca = busca.trim().toLowerCase();
+
+  const materiaisFiltrados = materials.filter((material) => {
+    const nomeMaterial = String(material.nome || "").toLowerCase();
+
+    return nomeMaterial.includes(textoBusca);
+  });
 
   useEffect(() => {
     carregarMateriais();
