@@ -75,8 +75,8 @@ export default function App() {
     }
   }
 
-  async function baixarMaterial(material) {
-    const quantidadeRetirada = Number(retiradas[material.id]);
+  async function baixarMaterial(material, index) {
+    const quantidadeRetirada = Number(retiradas[index]);
     const estoqueAtual = Number(material.quantidade);
 
     if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
@@ -104,7 +104,7 @@ export default function App() {
 
       setRetiradas({
         ...retiradas,
-        [material.id]: "",
+        [index]: "",
       });
     } catch (error) {
       console.log("Erro ao baixar estoque:", error);
@@ -205,9 +205,10 @@ export default function App() {
         <FlatList
           testID="lista-materials"
           data={materiaisFiltrados}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => {
+          keyExtractor={(item, index) => item.id || String(index)}
+          renderItem={({ item, index }) => {
             const estoqueCritico = Number(item.quantidade) < 10;
+
             return (
               <View
                 style={[styles.card, estoqueCritico && styles.cardCritico]}
@@ -223,11 +224,11 @@ export default function App() {
                   testID="input-retirada"
                   style={styles.input}
                   placeholder="Quantidade para retirar"
-                  value={retiradas[item.id] || ""}
+                  value={retiradas[index] || ""}
                   onChangeText={(texto) =>
                     setRetiradas({
                       ...retiradas,
-                      [item.id]: texto,
+                      [index]: texto,
                     })
                   }
                   keyboardType="numeric"
@@ -236,7 +237,7 @@ export default function App() {
                 <TouchableOpacity
                   testID="btn-baixar"
                   style={styles.buttonBaixar}
-                  onPress={() => baixarMaterial(item)}
+                  onPress={() => baixarMaterial(item, index)}
                 >
                   <Text style={styles.buttonText}>Baixar Estoque</Text>
                 </TouchableOpacity>
@@ -299,7 +300,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
-
   buttonExcluir: {
     backgroundColor: "#D32F2F",
     padding: 12,
@@ -316,6 +316,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+  },
+  dashboard: {
+    backgroundColor: "#E3F2FD",
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 15,
   },
   card: {
     borderWidth: 1,
@@ -334,11 +340,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 4,
-  },
-  dashboard: {
-    backgroundColor: "#E3F2FD",
-    padding: 10,
-    borderRadius: 8,
-    marginBottom: 15,
   },
 });
