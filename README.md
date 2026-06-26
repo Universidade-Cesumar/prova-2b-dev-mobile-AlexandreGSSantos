@@ -95,19 +95,33 @@ Após iniciar o Expo, utilize o aplicativo **Expo Go** em um dispositivo Android
 
 ## Tela principal
 
-_Adicionar captura de tela do aplicativo funcionando._
+![Tela Principal](screenshots/tela-principal.png)
+
+Tela inicial do aplicativo contendo formulário de cadastro, dashboard com totalizador de materiais e lista completa de itens cadastrados.
+
+---
 
 ## Cadastro de materiais
 
-_Adicionar captura de tela do cadastro._
+![Cadastro de Material](screenshots/cadastro.png)
+
+Exemplo do preenchimento dos campos para cadastro de um novo material no almoxarifado.
+
+---
 
 ## Pesquisa de materiais
 
-_Adicionar captura de tela utilizando o filtro de busca._
+![Pesquisa de Materiais](screenshots/pesquisa.png)
+
+Filtro de pesquisa em funcionamento, realizando a busca parcial por materiais cadastrados e atualizando automaticamente o totalizador.
+
+---
 
 ## Estoque crítico
 
-_Adicionar captura de tela mostrando um material com quantidade inferior a 10 unidades._
+![Estoque Crítico](screenshots/estoque-critico.png)
+
+Exemplo do indicador visual de estoque crítico para materiais com quantidade inferior a 10 unidades.
 
 ---
 
