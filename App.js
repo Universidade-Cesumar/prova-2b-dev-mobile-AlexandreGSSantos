@@ -153,7 +153,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Almoxarifado - Enfermagem</Text>
-
       <Text style={styles.description}>
         Este template servirá para desenvolver o projeto responsável por
         modernizar o controle de insumos médicos do almoxarifado. Através desta
@@ -161,7 +160,6 @@ export default function App() {
         real, cadastrar novos materiais e registrar baixas de estoque de forma
         ágil e segura.
       </Text>
-
       <TextInput
         testID="input-nome"
         style={styles.input}
@@ -169,7 +167,6 @@ export default function App() {
         value={nome}
         onChangeText={setNome}
       />
-
       <TextInput
         testID="input-quantidade"
         style={styles.input}
@@ -178,7 +175,6 @@ export default function App() {
         onChangeText={setQuantidade}
         keyboardType="numeric"
       />
-
       <TouchableOpacity
         testID="btn-cadastrar"
         style={styles.button}
@@ -186,7 +182,6 @@ export default function App() {
       >
         <Text style={styles.buttonText}>Cadastrar Material</Text>
       </TouchableOpacity>
-
       <TextInput
         testID="input-busca"
         style={styles.input}
@@ -194,70 +189,66 @@ export default function App() {
         value={busca}
         onChangeText={setBusca}
       />
-
       <Text style={styles.subtitle}>Materiais cadastrados</Text>
-
       <View style={styles.dashboard}>
         <Text testID="total-itens" style={styles.subtitle}>
           Total de materiais: {materiaisFiltrados.length}
         </Text>
       </View>
+      {loading && <ActivityIndicator size="large" color="#1976D2" />}
+      (
+      <FlatList
+        testID="lista-materials"
+        data={materiaisFiltrados}
+        keyExtractor={(item, index) => item.id || String(index)}
+        renderItem={({ item, index }) => {
+          const estoqueCritico = Number(item.quantidade) < 10;
 
-      {loading ? (
-        <ActivityIndicator size="large" color="#1976D2" />
-      ) : (
-        <FlatList
-          testID="lista-materials"
-          data={materiaisFiltrados}
-          keyExtractor={(item, index) => item.id || String(index)}
-          renderItem={({ item, index }) => {
-            const estoqueCritico = Number(item.quantidade) < 10;
+          return (
+            <View
+              style={[styles.card, estoqueCritico && styles.cardCritico]}
+              accessibilityLabel={
+                estoqueCritico ? "estoque-critico" : undefined
+              }
+            >
+              <Text style={styles.materialName}>{item.nome}</Text>
 
-            return (
-              <View
-                style={[styles.card, estoqueCritico && styles.cardCritico]}
-                accessibilityLabel={
-                  estoqueCritico ? "estoque-critico" : undefined
+              <Text>Quantidade: {item.quantidade}</Text>
+
+              <TextInput
+                testID="input-retirada"
+                style={styles.input}
+                placeholder="Quantidade para retirar"
+                value={retiradas[index] || ""}
+                onChangeText={(texto) =>
+                  setRetiradas({
+                    ...retiradas,
+                    [index]: texto,
+                  })
                 }
+                keyboardType="numeric"
+              />
+
+              <TouchableOpacity
+                testID="btn-baixar"
+                style={styles.buttonBaixar}
+                onPress={() => baixarMaterial(item, index)}
               >
-                <Text style={styles.materialName}>{item.nome}</Text>
+                <Text style={styles.buttonText}>Baixar Estoque</Text>
+              </TouchableOpacity>
 
-                <Text>Quantidade: {item.quantidade}</Text>
-
-                <TextInput
-                  testID="input-retirada"
-                  style={styles.input}
-                  placeholder="Quantidade para retirar"
-                  value={retiradas[index] || ""}
-                  onChangeText={(texto) =>
-                    setRetiradas({
-                      ...retiradas,
-                      [index]: texto,
-                    })
-                  }
-                  keyboardType="numeric"
-                />
-
-                <TouchableOpacity
-                  testID="btn-baixar"
-                  style={styles.buttonBaixar}
-                  onPress={() => baixarMaterial(item, index)}
-                >
-                  <Text style={styles.buttonText}>Baixar Estoque</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  testID="btn-excluir"
-                  style={styles.buttonExcluir}
-                  onPress={() => excluirMaterial(item.id)}
-                >
-                  <Text style={styles.buttonText}>Excluir Material</Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-        />
-      )}
+              <TouchableOpacity
+                testID="btn-excluir"
+                style={styles.buttonExcluir}
+                onPress={() => excluirMaterial(item.id)}
+              >
+                <Text style={styles.buttonText}>Excluir Material</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+      />
+      )
     </View>
   );
 }
